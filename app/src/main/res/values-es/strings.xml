@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PC1App</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Loguearse o Registrarse</string>
+    <string name="action_sign_in_short">Loguearse</string>
+    <string name="welcome">Bienvenido !</string>
+    <string name="invalid_username">No es un nombre Valido</string>
+    <string name="invalid_password">La contraseña debe tener más de 4 caractéres</string>
+    <string name="login_failed">Login fallado</string>
+    <string name="forgot_password">Has olvidado tu contraseña?</string>
+    <string name="forgot_message">Se ha enviado un código de recuperación a su correo electrónico.</string>
+    <string name="logout">Desloguearse</string>
+    <string name="loged_out">¡Deslogueado!</string>
+    <string name="results">Resultados</string>
+    <string name="configuration">Configuracion</string>
+    <string name="invalid_email">Email inválido</string>
+    <string name="invalid_phone">Teléfono inválido</string>
+    <string name="no_items">No hay elementos disponibles</string>
+    <string name="messages_header">Mensajes</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Tu Firma</string>
+    <string name="reply_title">Accion por Defecto</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sincronizar Correo</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+</resources>
