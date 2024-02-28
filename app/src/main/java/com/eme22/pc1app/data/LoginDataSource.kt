@@ -16,7 +16,7 @@ class LoginDataSource {
 
             val user = hotelApiService.getUserByEmail(username)
 
-            if (user.correoElectronico == null)
+            if (user?.correoElectronico == null)
                 return Result.Error(IOException("Usuario No Existe"))
 
             if (user.password != password)

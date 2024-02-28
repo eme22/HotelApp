@@ -33,12 +33,19 @@ data class User(
 
 @Parcelize
 data class Habitacion(
-	val estado: String? = null,
+	val estado: ESTADO_HABITACION? = null,
 	val sucursal: Sucursal? = null,
 	val numeroHabitacion: Int? = null,
+	val piso: Int? = null,
 	val id: String? = null,
 	val tipoHabitacion: TipoHabitacion? = null
 ) : Parcelable
+
+enum class ESTADO_HABITACION{
+	DISPONIBLE,
+	NO_DISPONIBLE,
+	RESERVADA_SINPAGO
+}
 
 @Parcelize
 data class TipoHabitacion(
@@ -56,6 +63,7 @@ data class Sucursal(
 	val direccion: String? = null,
 	val imagen: String? = null,
 	val id: String? = null,
+	val pisos: Int? = null,
 	val nombre: String? = null,
 	val numeroTelefono: String? = null
 ) : Parcelable
@@ -63,7 +71,7 @@ data class Sucursal(
 @Parcelize
 data class Reserva(
 	val fechaCheckOut: String? = null,
-	val usuario: String? = null,
+	val usuario: User? = null,
 	val id: String? = null,
 	val habitacion: Habitacion? = null,
 	val fechaCheckIn: String? = null

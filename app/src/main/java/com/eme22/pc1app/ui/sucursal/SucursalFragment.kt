@@ -1,19 +1,18 @@
 package com.eme22.pc1app.ui.sucursal
 
-import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.eme22.pc1app.ReservarCitaActivity
 import com.eme22.pc1app.data.adapter.SucursalAdapter
 import com.eme22.pc1app.databinding.FragmentSucursalBinding
+import com.google.gson.GsonBuilder
 
 
 class SucursalFragment : Fragment() {
@@ -48,24 +47,40 @@ class SucursalFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.title = ""
 
 
-        viewModel = ViewModelProvider(this).get(SucursalViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this)[SucursalViewModel::class.java]
 
-        viewModel.sucursales.observe(viewLifecycleOwner, Observer { sucursales ->
 
-            binding.catergoryNoItems.visibility = if (sucursales.isEmpty()) View.VISIBLE else View.GONE
+        viewModel.sucursales.observe(viewLifecycleOwner) { sucursales ->
+
+            print(
+                "SUCUS"+GsonBuilder().setPrettyPrinting().create().toJson(sucursales))
+
+            binding.catergoryNoItems.visibility =
+                if (sucursales.isEmpty()) View.VISIBLE else View.GONE
 
             binding.categoryItemProgressBar.visibility = View.GONE
 
-            var sucursalAdapter = SucursalAdapter(sucursales.toMutableList()) { sucursal ->
+            val sucursalAdapter = SucursalAdapter(sucursales.toMutableList()) { sucursal ->
                 // Manejar el clic en el elemento de la lista aquí
+                val intent = Intent(root.context, ReservarCitaActivity::class.java)
+                val bundle = Bundle()
+
+                if (requireActivity().intent.getSerializableExtra("USUARIO") != null) {
+                    val usuario = requireActivity().intent.getSerializableExtra("USUARIO")
+                    bundle.putSerializable("USUARIO", usuario)
+                }
+                //bundle.putString("persona", person.toJson())
+                //bundle.putInt("idpersona", person.id.toInt())
+                bundle.putParcelable("sucursal", sucursal);
+                intent.putExtras(bundle)
+                root.context.startActivity(intent)
             }
 
             binding.categoryFragmentRecyler.apply {
-                layoutManager = GridLayoutManager(requireContext(),2)
+                layoutManager = GridLayoutManager(requireContext(), 2)
                 adapter = sucursalAdapter
             }
-        })
+        }
 
         viewModel.obtenerSucursales()
 

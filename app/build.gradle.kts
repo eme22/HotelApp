@@ -15,8 +15,8 @@ android {
 
     defaultConfig {
         applicationId = "com.eme22.pc1app"
-        minSdk = 24
-        targetSdk = 33
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -33,6 +33,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -72,5 +73,8 @@ dependencies {
 
     //OKHTTP3 LOGGING INTERCEPTOR
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    //DESUGARING
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
 
 }

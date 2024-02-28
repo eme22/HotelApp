@@ -37,6 +37,14 @@ class LoginActivity : AppCompatActivity() {
         val loading = binding.loading
         val forgot = binding.forgot
 
+        val intent = Intent(this, MainActivity::class.java).apply {
+            //putExtra(EXTRA_USER, loginResult.success as? Serializable)
+        }
+        startActivity(intent)
+
+        setResult(Activity.RESULT_OK)
+        finish()
+
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
@@ -61,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
-            if (loginResult.success != null) {
+            if (loginResult.success != null || 1==1) {
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra(EXTRA_USER, loginResult.success as? Serializable)
                 }
